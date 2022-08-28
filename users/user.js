@@ -1,13 +1,23 @@
 class user {
-  constructor(user,id){
-    this.user = user
-    this.rooms = new Map()
-    this.challenge = null
-    this.socketID = id
-    this.loginTime = new Date()
-    this.typequizzingIDs = new Map()
-    this.friendsIds = new Map()
+  constructor(user, id, uid) {
+    this.user = user;
+    this.username = user.userName;
+    this.activeChats = new set();
+    this.chatsLastViewedIds = new Map();
+    this.socketID = id;
+    this.uid = uid;
+    this.loginTime = Date.now() + new Date().getTimezoneOffset() * 60 * 1000;
   }
-  beginChallenge(opponent){}
-  enterRoom(){}
+
+  setLastViewedChats(data) {
+    for (const i in data) {
+      this.chatsLastViewedIds.set(i, data[i]);
+    }
+  }
+
+  enterRoom(roomId) {
+    this.activeChats.add(roomId);
+  }
 }
+
+module.exports = user;
