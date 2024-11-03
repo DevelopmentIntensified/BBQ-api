@@ -19,5 +19,4 @@ class user {
     this.activeChats.add(roomId);
   }
 }
-
 module.exports = user;
